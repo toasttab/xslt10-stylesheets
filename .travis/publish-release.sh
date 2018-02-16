@@ -32,6 +32,9 @@ rm -rf cdn/release/xsl/current
 rm -rf cdn/release/xsl-nons/current
 cp -a cdn/release/xsl/$VERSION cdn/release/xsl/current
 cp -a cdn/release/xsl-nons/$VERSION cdn/release/xsl-nons/current
+# copy documentation
+tar xvf dist/docbook-xsl-doc-$VERSION.tar.bz2
+cp -a docbook-xsl-$VERSION/doc cdn/release/xsl/$VERSION/
 
 # If there are no changes, bail out.
 # (Note that this doesn't detect additions.)

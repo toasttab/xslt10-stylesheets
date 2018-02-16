@@ -30,6 +30,7 @@ script:
 - make check
 - make dist
 - export VERSION=$(make version)
+- tar xvf dist/docbook-xsl-doc-snapshot.tar.bz2
 
 after_success:
 # Update CDN
