@@ -55,7 +55,10 @@
       <xsl:element name="axf:document-info">
         <xsl:attribute name="name">keywords</xsl:attribute>
         <xsl:attribute name="value">
-          <xsl:for-each select="//d:keyword">
+          <xsl:for-each
+              select="//d:keyword[normalize-space(.) != '']
+                                 [count(. | key('keywords', normalize-space(.))[1]) = 1]">
+            <xsl:sort select="normalize-space(.)"/>
             <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() != last()">
               <xsl:text>, </xsl:text>
@@ -79,7 +82,11 @@
       </xsl:element>
     </xsl:if>
 
+    <xsl:call-template name="user-axf-document-information" />
+
 </xsl:template>
+
+<xsl:template name="user-axf-document-information" />
 
 <!-- These properties are added to fo:simple-page-master -->
 <xsl:template name="axf-page-master-properties">
